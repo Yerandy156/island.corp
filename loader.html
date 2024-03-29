@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Island.Loader</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+        animation: gradient 10s infinite alternate; /* Dynamic background animation */
+    }
+    @keyframes gradient {
+        0% {
+            background-color: #777;
+        }
+        100% {
+            background-color: #000;
+        }
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .frame {
+        width: 80%;
+        height: 80%;
+        max-width: 800px;
+        max-height: 600px;
+        border: 2px solid #555;
+        border-radius: 10px;
+        padding: 30px;
+        background-color: #222;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        position: relative;
+    }
+    .input-box {
+        width: calc(100% - 40px); /* Adjusted width */
+        height: calc(70% - 20px); /* Adjusted height */
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid #777;
+        background-color: #333;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 18px;
+        resize: none; /* Prevent resizing */
+        margin: auto; /* Center the textarea */
+        display: block; /* Make it a block element */
+        position: relative;
+    }
+    .button-container {
+        position: absolute;
+        bottom: 20px;
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%); /* Move back to the left */
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+    .button {
+        padding: 20px;
+        background-color: #222;
+        color: #fff;
+        border: 2px solid #222;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        text-align: center;
+        transition: background-color 0.3s ease; /* Smooth transition */
+    }
+    .button:hover {
+        border-color: #666; /* Darker border on hover */
+    }
+    .button:active {
+        border-color: #00ff00; /* Green border when clicked */
+        background-color: #111; /* Darker background when clicked */
+    }
+    .title {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 36px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<div class="title">Island.Loader</div>
+<div class="container">
+    <div class="frame">
+        <textarea class="input-box" id="inputBox" placeholder="Paste your code..."></textarea>
+        <div class="button-container">
+            <button class="button" onclick="injectCode()">Inject</button>
+            <button class="button" onclick="executeCode()">Execute</button>
+            <button class="button" onclick="clearCode()">Clear</button>
+            <button class="button">Download</button>
+        </div>
+    </div>
+</div>
 
+<script>
+function injectCode() {
+    // Simulate code injection
+    // You can add your injection logic here
+    this.style.borderColor = '#00ff00'; // Green border when clicked
+}
+
+function executeCode() {
+    // Simulate code execution
+    // You can add your execution logic here
+    this.style.borderColor = '#00ff00'; // Green border when clicked
+}
+
+function clearCode() {
+    // Clear the textarea
+    document.getElementById('inputBox').value = '';
+    this.style.borderColor = '#00ff00'; // Green border when clicked
+}
+
+// Detect language and apply styling
+document.getElementById('inputBox').addEventListener('input', function() {
+    var code = this.value;
+    var lines = code.split('\n');
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].trim();
+        if (line.startsWith('--')) {
+            // Comments: gray color
+            this.innerHTML = this.innerHTML.replace(line, '<span style="color: #777;">' + line + '</span>');
+        } else if (line.startsWith('local')) {
+            // Local variables: red color
+            this.innerHTML = this.innerHTML.replace(line, '<span style="color: #ff0000;">' + line + '</span>');
+        } else {
+            // Default color: white
+            this.innerHTML = this.innerHTML.replace(line, '<span style="color: #fff;">' + line + '</span>');
+        }
+    }
+});
+</script>
+
+</body>
+</html>
