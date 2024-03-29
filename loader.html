@@ -12,7 +12,7 @@
         color: #fff;
         font-family: Arial, sans-serif;
         overflow: hidden;
-        animation: gradient 10s infinite alternate; /* Dynamic background animation */
+        animation: gradient 10s infinite alternate;
     }
     @keyframes gradient {
         0% {
@@ -59,7 +59,7 @@
         position: absolute;
         bottom: 20px;
         left: 50%; /* Center horizontally */
-        transform: translateX(-50%); /* Move back to the left */
+        transform: translateX(-50%); 
         width: 100%;
         display: flex;
         justify-content: space-around;
@@ -73,14 +73,14 @@
         cursor: pointer;
         font-size: 18px;
         text-align: center;
-        transition: background-color 0.3s ease; /* Smooth transition */
+        transition: background-color 0.3s ease;
     }
     .button:hover {
-        border-color: #666; /* Darker border on hover */
+        border-color: #666; 
     }
     .button:active {
-        border-color: #00ff00; /* Green border when clicked */
-        background-color: #111; /* Darker background when clicked */
+        border-color: #00ff00; 
+        background-color: #111; 
     }
     .title {
         position: absolute;
@@ -109,35 +109,33 @@
 function injectCode() {
     // Simulate code injection
     // You can add your injection logic here
-    this.style.borderColor = '#00ff00'; // Green border when clicked
+    this.style.borderColor = '#00ff00'; 
 }
 
 function executeCode() {
-    // Simulate code execution
-    // You can add your execution logic here
-    this.style.borderColor = '#00ff00'; // Green border when clicked
+
+    this.style.borderColor = '#00ff00'; 
 }
 
 function clearCode() {
-    // Clear the textarea
+
     document.getElementById('inputBox').value = '';
-    this.style.borderColor = '#00ff00'; // Green border when clicked
+    this.style.borderColor = '#00ff00'; 
 }
 
-// Detect language and apply styling
 document.getElementById('inputBox').addEventListener('input', function() {
     var code = this.value;
     var lines = code.split('\n');
     for (var i = 0; i < lines.length; i++) {
         var line = lines[i].trim();
         if (line.startsWith('--')) {
-            // Comments: gray color
+           
             this.innerHTML = this.innerHTML.replace(line, '<span style="color: #777;">' + line + '</span>');
         } else if (line.startsWith('local')) {
-            // Local variables: red color
+          
             this.innerHTML = this.innerHTML.replace(line, '<span style="color: #ff0000;">' + line + '</span>');
         } else {
-            // Default color: white
+           
             this.innerHTML = this.innerHTML.replace(line, '<span style="color: #fff;">' + line + '</span>');
         }
     }
